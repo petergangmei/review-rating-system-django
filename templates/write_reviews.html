@@ -1,0 +1,149 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+
+<div class="row mt-3 hero_writereview">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div style="justify-content: space-between; display:flex; align-items:center;">
+            <img src="{% static 'assets/img/sony_a7s.jpg'%}"  height="100" width="100">
+            <h3 style="margin-right: 45%;">Sony a7s III Mirroless Camera</h3>
+        </div>
+        <hr>
+        <div class="stars_rating">
+            <h5>Overall rating</h5>
+            <i class="fa-regular fa-star fa-lg" id="star1"></i>
+            <i class="fa-regular fa-star fa-lg" id="star2"></i>
+            <i class="fa-regular fa-star fa-lg" id="star3"></i>
+            <i class="fa-regular fa-star fa-lg" id="star4"></i>
+            <i class="fa-regular fa-star fa-lg" id="star5"></i>
+        </div>
+        <br>
+        <h5>Add a written review</h5>
+        <form action="{%url 'write-reviews'%}" method="post">
+            {% csrf_token %}
+            <input type="hidden" value="1" id="starsValue" name="startValue">
+            <textarea class="form-control review_form mt-3" name="comment" placeholder="What did you like or dislike about this product?"></textarea>
+            <button class="btn btn-sm btn-danger mt-3 "  id="subBtn">Submit</button>
+        </form>
+
+
+    </div>
+    <div class="col-md-2"></div>
+
+</div>
+
+<script>
+    console.log('start console')
+    let star1           = document.getElementById("star1")
+    let star2           = document.getElementById("star2")
+    let star3           = document.getElementById("star3")
+    let star4           = document.getElementById("star4")
+    let star5           = document.getElementById("star5")
+    let starsValue      = document.getElementById("starsValue")
+    let subBtn  = document.getElementById("subBtn");
+
+    subBtn.disabled = true;
+
+    star1.addEventListener('click', function(){
+        starsValue.value = 1;
+        subBtn.disabled = false;
+        
+        if( star1.classList.contains("fa-solid") ){
+            star5.classList.remove("fa-solid")
+            star4.classList.remove("fa-solid")
+            star3.classList.remove("fa-solid")
+            star2.classList.remove("fa-solid")
+            star2.classList.add("fa-regular")
+            star3.classList.add("fa-regular")
+            star4.classList.add("fa-regular")
+            star5.classList.add("fa-regular")
+
+        }else{
+
+            star1.classList.remove("fa-regular")
+            star1.classList.add("fa-solid")
+        }
+        
+    })
+    star2.addEventListener('click', function(){
+        starsValue.value = 2;
+        subBtn.disabled = false;
+        if (star2.classList.contains('fa-solid')){
+            star5.classList.remove("fa-solid")
+            star4.classList.remove("fa-solid")
+            star3.classList.remove("fa-solid")
+            star5.classList.add("fa-regular")
+            star4.classList.add("fa-regular")
+            star3.classList.add("fa-regular")
+
+        }else{
+            star1.classList.remove("fa-regular")
+            star2.classList.remove("fa-regular")
+            star1.classList.add("fa-solid")
+            star2.classList.add("fa-solid")
+        }
+    })
+
+    star3.addEventListener('click', function(){
+        starsValue.value = 3;
+        subBtn.disabled = false;
+        if (star3.classList.contains('fa-solid')){
+            star5.classList.remove("fa-solid")
+            star4.classList.remove("fa-solid")
+            star5.classList.add("fa-regular")
+            star4.classList.add("fa-regular")
+
+        }else{
+            star1.classList.remove("fa-regular")
+            star2.classList.remove("fa-regular")
+            star3.classList.remove("fa-regular")
+            star1.classList.add("fa-solid")
+            star2.classList.add("fa-solid")
+            star3.classList.add("fa-solid")
+        }
+    })
+
+
+
+    star4.addEventListener('click', function(){
+        starsValue.value = 4;
+        subBtn.disabled = false;
+        if (star4.classList.contains('fa-solid')){
+            star5.classList.remove("fa-solid")
+            star5.classList.add("fa-regular")
+        
+        }else{
+            star1.classList.remove("fa-regular")
+            star2.classList.remove("fa-regular")
+            star3.classList.remove("fa-regular")
+            star3.classList.remove("fa-regular")
+            star4.classList.remove("fa-regular")
+            star1.classList.add("fa-solid")
+            star2.classList.add("fa-solid")
+            star3.classList.add("fa-solid")
+            star4.classList.add("fa-solid")
+        }
+    })
+
+    star5.addEventListener('click', function(){
+        starsValue.value = 5;
+        subBtn.disabled = false;
+        if (star5.classList.contains("fa-solid")){
+            
+        }else{
+            star1.classList.remove("fa-regular")
+            star2.classList.remove("fa-regular")
+            star3.classList.remove("fa-regular")
+            star3.classList.remove("fa-regular")
+            star4.classList.remove("fa-regular")
+            star5.classList.remove("fa-regular")
+            star1.classList.add("fa-solid")
+            star2.classList.add("fa-solid")
+            star3.classList.add("fa-solid")
+            star4.classList.add("fa-solid")
+            star5.classList.add("fa-solid")
+        }
+    })
+</script>
+{%endblock%}

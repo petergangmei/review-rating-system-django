@@ -1,0 +1,121 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: linear-gradient(to-right, rgb(214, 181, 181), rgb(235, 234, 234));
+}
+nav{
+    min-height: 80px;
+    background-color: black;
+    color:white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 5%;
+}
+nav b{
+    font-size: 25px;
+    font-weight: 900px;
+}
+nav a{
+    font-size: 25px;
+    font-weight: 900px;
+    color: white;
+    text-decoration: none;
+}
+nav p{
+    color: white;
+    font-size: 25px;
+}
+.alpha{
+    font-size: 35px !important;
+}
+
+.hero{
+    margin: 5% 8%;
+}
+
+.messages{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+.messages div{
+    margin-top: 30px;
+    list-style: none;
+    padding: 5px;
+    border-left: 8px solid green;
+    border-top: 1px solid green;
+    border-bottom:  1px solid green;
+    border-right:  1px solid green;
+}
+
+
+
+/* .comments-form form {
+    display: flex;
+    border: 1px solid red;
+    flex-wrap: wrap;
+} */
+
+/* .comments-form form textarea{
+    border: 1px solid gray;
+    padding: 10px;
+    width: 80%;
+    min-height: 50px;
+    box-shadow: 0px 1px 3px 0px;
+} */
+
+/* .comments-form form button{
+    border: 1px solid gray;
+    padding: 10px;
+    width: 16%;
+    cursor: pointer;
+    min-height: 50px;
+    box-shadow: 0px 1px 3px 0px;
+} */
+
+
+
+.fa-star{
+    margin-top: 7px;
+    display: inline-block;
+    /* color: linear-gradient(to-right, rgb(173, 173, 12) , yellow) !important; */
+    color: rgb(235, 141, 0) !important;
+    cursor: pointer;
+}
+
+.five-star b{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.avatar-image{
+    width: 80px;
+    height: 80px;
+}
+
+.comments{
+    padding-left: 5% !important;
+}
+
+.write-review-button{
+    padding: 10px;
+    width: 80%;
+    border: 0px;
+    outline: none;
+    background:linear-gradient(to-right, rgb(185, 179, 179), white);
+    box-shadow: 1px 1px 4px 0px;
+}
+
+.hero_writereview{
+    min-height: 120vh;
+}
+.review_form{
+    border-radius: 0 !important;
+    box-shadow: 0px 2px 4px 0px;
+    padding: 10px !important;
+    height: 120px !important;
+}

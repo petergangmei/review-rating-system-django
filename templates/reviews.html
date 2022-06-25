@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{%load static%}
+{%block content%}
+<div class="hero">
+  <!-- <h4>Sony a7s III Mirroless Camera</h4> -->
+
+    <div>
+      <img src="{% static 'assets/img/sony_a7s.jpg'%}"  height="150" width="150">
+      <h3>Product Reviews</h3>
+      
+    </div>
+    <br>
+    <div class="comments-body">
+        <div class="row">
+            <div class="col-md-3">
+                <i class="fa-solid fa-star fa-lg "></i>
+                <i class="fa-solid fa-star fa-lg "></i>
+                <i class="fa-solid fa-star fa-lg "></i>
+                <i class="fa-solid fa-star fa-lg"></i>
+                <i class="fa-regular fa-star fa-lg"></i>
+                <br>
+
+                <b>Rating: {{rating.stars__avg|floatformat }} out of 5</b>
+                <br><br>
+                5 stars {{context.fiveStars|floatformat}}%
+                <div class="progress">
+                <input type="hidden" id="stars5_percent" value="{{context.fiveStars|floatformat}}">
+                <div class="progress-bar bg-warning" id="5stars" value="{{context.fiveStars|floatformat}}" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <br>
+                4 stars {{context.fourStars|floatformat}}%
+                <div class="progress">
+                <input type="hidden" id="stars4_percent" value="{{context.fourStars|floatformat}}">
+                <div class="progress-bar bg-warning " id="4stars" role="progressbar" aria-valuenow="{{context.fourStars|floatformat}}" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <br>
+
+                3 stars {{context.threeStars|floatformat}}%
+                <div class="progress">
+                <input type="hidden" id="stars3_percent" value="{{context.threeStars|floatformat}}">
+                <div class="progress-bar bg-warning" id="3stars" role="progressbar" aria-valuenow="{{context.threeStars|floatformat}}" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <br>
+
+                2 stars {{context.twoStars|floatformat}}%
+                <div class="progress">
+                <input type="hidden" id="stars2_percent" value="{{context.twoStars|floatformat}}">
+
+                <div class="progress-bar bg-warning" id="2stars" role="progressbar" aria-valuenow="{{context.twoStars|floatformat}}" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <br>
+
+                1 stars {{context.oneStars|floatformat}}%
+                <div class="progress">
+                <input type="hidden" id="stars1_percent" value="{{context.oneStars|floatformat}}">
+                <div class="progress-bar bg-warning" id="1stars" role="progressbar" aria-valuenow="{{context.oneStars|floatformat}}" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <br>
+                {{context.total}} total rating count.
+                <br>
+                <br>
+
+
+                <a href="{%url 'write-reviews'%}"><button class="write-review-button">Write a Review</button></a>
+            </div>
+            <div class="col-md-9 comments">
+
+                {%if reviews%}
+                {%else%}
+                <div style="display: flex; justify-content:right; padding-right:40%;">
+                  <p>-- There is no review available --</p>
+                </div>
+                {%endif%}
+
+                {%for review in reviews%}
+                <img class="avatar-image" src="{%static 'assets/img/avatar-icon.jpg' %}">
+                <br>
+                {{review.name}}
+                <br>
+                <div class="star-rating-section">
+
+                    {%if review.stars == 1%}
+                    <i class="fa-solid fa-star fa-sm "></i>
+                    <i class="fa-regular fa-star fa-sm "></i>
+                    <i class="fa-regular fa-star fa-sm "></i>
+                    <i class="fa-regular fa-star fa-sm"></i>
+                    <i class="fa-regular fa-star fa-sm"></i>
+                    {%endif%}
+
+                    {%if review.stars == 2%}
+                    <i class="fa-solid fa-star fa-sm "></i>
+                    <i class="fa-solid fa-star fa-sm "></i>
+                    <i class="fa-regular fa-star fa-sm "></i>
+                    <i class="fa-regular fa-star fa-sm"></i>
+                    <i class="fa-regular fa-star fa-sm"></i>
+                    {%endif%}
+
+                    {%if review.stars == 3%}
+                    <i class="fa-solid fa-star fa-sm "></i>
+                    <i class="fa-solid fa-star fa-sm "></i>
+                    <i class="fa-solid fa-star fa-sm "></i>
+                    <i class="fa-regular fa-star fa-sm"></i>
+                    <i class="fa-regular fa-star fa-sm"></i>
+                    {%endif%}
+
+                    {%if review.stars == 4%}
+                    <i class="fa-solid fa-star fa-sm "></i>
+                    <i class="fa-solid fa-star fa-sm "></i>
+                    <i class="fa-solid fa-star fa-sm "></i>
+                    <i class="fa-solid fa-star fa-sm"></i>
+                    <i class="fa-regular fa-star fa-sm"></i>
+                    {%endif%}
+
+                    {%if review.stars == 5%}
+                    <i class="fa-solid fa-star fa-sm "></i>
+                    <i class="fa-solid fa-star fa-sm "></i>
+                    <i class="fa-solid fa-star fa-sm "></i>
+                    <i class="fa-solid fa-star fa-sm"></i>
+                    <i class="fa-solid fa-star fa-sm"></i>
+                    {%endif%}
+                </div>
+                
+                <p>{{review.comment}}</p>
+                <hr>
+                <br>
+                {%endfor%}
+
+                {%if reviews%}
+                <div aria-label="">
+                    <ul class="pagination">
+                      {%if reviews.has_previous%}
+                      <li class="page-item ">
+                        <a class="page-link" href="?page={{reviews.previous_page_number}}">Previous Page</a>
+                      </li>
+                      {%else%}
+                      <li class="page-item disabled">
+                        <a class="page-link">Previous Page</a>
+                      </li>
+                      {%endif%}
+
+                      <li class="page-item"><a class="page-link">Page {{reviews.number }} of {{reviews.paginator.num_pages}}</a></li>
+
+                      {%if reviews.has_next%}
+                      <li class="page-item ">
+                        <a class="page-link" href="?page={{reviews.next_page_number}}">Next Page</a>
+                      </li>
+                      {%else%}
+                      <li class="page-item disabled">
+                        <a class="page-link">Next Page</a>
+                      </li>
+                      {%endif%}
+                      
+                    </ul>
+                  </div>
+                  {%endif%}
+
+
+            </div>
+        </div>
+        
+    </div>
+</div>
+{%endblock%}
